@@ -1,3 +1,4 @@
+import { authGuard, roleGuard } from '@/modules/auth/guards/authGuard';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -12,11 +13,13 @@ const router = createRouter({
       path: '/admin/config',
       name: 'admin',
       component: () => import('@/modules/pages/AdminConfig.vue'),
+      beforeEnter: [authGuard, roleGuard('Admin')],
     },
     {
       path: '/admin/editor',
       name: 'editor',
       component: () => import('@/modules/pages/EditorPanel.vue'),
+      beforeEnter: [authGuard, roleGuard('Admin', 'Editor')],
     },
   ],
 });
