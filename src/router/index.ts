@@ -1,8 +1,24 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [],
-})
+  routes: [
+    {
+      path: '/',
+      name: 'guest',
+      component: () => import('@/modules/pages/GuestPanel.vue'),
+    },
+    {
+      path: '/admin/config',
+      name: 'admin',
+      component: () => import('@/modules/pages/AdminConfig.vue'),
+    },
+    {
+      path: '/admin/editor',
+      name: 'editor',
+      component: () => import('@/modules/pages/EditorPanel.vue'),
+    },
+  ],
+});
 
-export default router
+export default router;
